@@ -20,6 +20,27 @@ public class PatientServiceImpl implements PatientService {
     private final AppointmentRepository appointmentRepo;
 
     @Override
+    public Patient createPatient(Patient patient) {
+        return patientRepo.save(patient);
+    }
+
+    @Override
+    public Patient updatePatient(Long patientId, Patient patientDetails) {
+        Patient patient = patientRepo.findById(patientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+        patient.setName(patientDetails.getName());
+        patient.setContactInfo(patientDetails.getContactInfo());
+        return patientRepo.save(patient);
+    }
+
+    @Override
+    public void deletePatient(Long patientId) {
+        Patient patient = patientRepo.findById(patientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+        patientRepo.delete(patient);
+    }
+    
+    @Override
     public Patient getPatientById(Long patientId) {
         return patientRepo.findById(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
