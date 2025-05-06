@@ -31,7 +31,10 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
-
+	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter</artifactId>
+	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -90,7 +93,59 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-	</dependencies>
+		    <!-- Existing dependencies -->
+    <!-- Add JUnit Jupiter for unit testing -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <!-- Add H2 Database for in-memory testing -->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>test</scope>
+    </dependency>
+	<!-- Removed duplicate dependency for springdoc-openapi-starter-webmvc-ui with version 2.0.2 -->
+	<!-- Add your dependencies here -->
+	<dependency>
+		<groupId>io.swagger.core.v3</groupId>
+		<artifactId>swagger-annotations</artifactId>
+		<version>2.2.10</version> <!-- Use the latest version -->
+	</dependency>
+	<!-- Springdoc OpenAPI UI -->
+	<dependency>
+		<groupId>org.springdoc</groupId>
+		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		<version>2.7.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springdoc</groupId>
+		<artifactId>springdoc-openapi-ui</artifactId>
+		<version>1.6.15</version> <!-- Use the latest version -->
+	</dependency>	
+	<dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+    </dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>jakarta.persistence</groupId>
+		<artifactId>jakarta.persistence-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+	</dependency>
+</dependencies>
 
 	<build>
 		<plugins>

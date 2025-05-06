@@ -7,7 +7,7 @@ import java.util.List;
 import org.econsult.healthcare.entity.Appointment;
 public interface AppointmentService {
 
-    Appointment bookAppointment(Long doctorId, Long patientId, LocalDateTime dateTime);
+    Appointment bookAppointment(Long doctorId, Long patientId, LocalDateTime dateTime, String consulationNotes);
 
     Appointment rescheduleAppointment(Long appointmentId, LocalDateTime newDateTime);
 
@@ -16,5 +16,7 @@ public interface AppointmentService {
     List<Appointment> getAppointmentsForDoctorOnDate(Long doctorId, LocalDate date);
 
     List<Appointment> getPatientConsultationHistory(Long patientId);
+
+    Appointment completeAppointment(Long appointmentId, String consultationNotes);
 
 }

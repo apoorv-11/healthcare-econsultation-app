@@ -2,6 +2,8 @@ package org.econsult.healthcare.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +21,8 @@ public class Doctor {
     private String specialty;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Appointment> appointments;
-
     // Getters and Setters
     public Long getId() {
         return id;

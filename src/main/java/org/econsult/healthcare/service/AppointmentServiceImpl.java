@@ -24,7 +24,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final PatientRepository patientRepo;
 
     @Override
-    public Appointment bookAppointment(Long doctorId, Long patientId, LocalDateTime dateTime) {
+    public Appointment bookAppointment(Long doctorId, Long patientId, LocalDateTime dateTime, String consulationNotes) {
         if (appointmentRepo.existsByDoctorIdAndDateTime(doctorId, dateTime)) {
             throw new RuntimeException("Slot already booked.");
         }
@@ -39,10 +39,26 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment.setPatient(patient);
         appointment.setDateTime(dateTime);
         appointment.setStatus(AppointmentStatus.BOOKED);
+        appointment.setConsultationNotes(consulationNotes);
 
         return appointmentRepo.save(appointment);
     }
-
+    
+    @Override
+    public Appointment completeAppointment(Long appointmentId, String consultationNotes) {
+        Appointment appointment = appointmentRepo.findById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+    
+        if (appointment.getStatus() == AppointmentStatus.CANCELLED) {
+            throw new RuntimeException("Cannot complete a cancelled appointment.");
+        }
+    
+        appointment.setStatus(AppointmentStatus.COMPLETED);
+        appointment.setConsultationNotes(consultationNotes);
+    
+        return appointmentRepo.save(appointment);
+    }
+    
     @Override
     public Appointment rescheduleAppointment(Long appointmentId, LocalDateTime newDateTime) {
         Appointment appointment = appointmentRepo.findById(appointmentId)
