@@ -9,7 +9,6 @@ import org.econsult.healthcare.entity.Appointment;
 import org.econsult.healthcare.service.AppointmentService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,10 +45,10 @@ public class AppointmentController {
         return ResponseEntity.ok(appointment);
     }
 
-    @DeleteMapping("/{id}/cancel")
+    @PutMapping("/{id}/cancel")
     public ResponseEntity<Void> cancelAppointment(@PathVariable Long id) {
         appointmentService.cancelAppointment(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/doctor/{id}")
