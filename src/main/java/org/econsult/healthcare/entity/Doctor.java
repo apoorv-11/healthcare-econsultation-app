@@ -23,6 +23,14 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Appointment> appointments;
+
+    public Doctor() {
+    }
+
+    public Doctor(String name, String specialty) {
+        this.name = name;
+        this.specialty = specialty;
+    }
     // Getters and Setters
     public Long getId() {
         return id;

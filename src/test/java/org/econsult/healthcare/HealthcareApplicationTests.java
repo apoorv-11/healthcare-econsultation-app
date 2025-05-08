@@ -48,14 +48,10 @@ class HealthcareApplicationTests {
 
     @BeforeEach
     void setup() {
-        doctor = new Doctor();
-        doctor.setName("Dr. Smith");
-        // Set other required fields if necessary
+        doctor = new Doctor("Dr. Smith", "Cardiology");
         doctor = doctorRepo.save(doctor);
 
-        patient = new Patient();
-        patient.setName("John Doe");
-        // Set other required fields if necessary
+        patient = new Patient("John Doe", "john@example.com");
         patient = patientRepo.save(patient);
     }
 
